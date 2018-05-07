@@ -1,0 +1,3 @@
+# homebrew-physics
+
+[Homebrew](https://brew.sh) tap with some formulas I use. Work in progress...
