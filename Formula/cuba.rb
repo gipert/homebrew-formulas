@@ -5,7 +5,7 @@ class Cuba < Formula
   sha256 "6b75bb8146ae6fb7da8ebb72ab7502ecd73920efc3ff77a69a656db9530a5eef"
 
   def install
-    # The Makefile provided does not support parallel build
+    # The Makefile provided by the author does not support parallel build
     ENV.deparallelize
     system "./configure", "--prefix=#{prefix}"
     system "make", "install"

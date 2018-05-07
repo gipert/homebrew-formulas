@@ -4,21 +4,11 @@ class Bat < Formula
   url "https://github.com/bat/bat/releases/download/v1.0.0-RC1/BAT-1.0.0-RC1.tar.gz"
   sha256 "1438b6a7e1be6093139d539ea9c14f2be36061d45412e2b28c52c04fcc33f463"
 
-  option "with-parallel", "Enable internal parallelization with OpenMP"
-  option "with-roostats", "Compile with RooStats support"
-
   depends_on "root"
-  if build.with? "parallel"
-    depends_on "cuba" => :recommended
-  else
-    depends_on "cuba" => :keg_only
-  end
+  depends_on "cuba" => :recommended
 
   def install
     opts = ["--prefix=#{prefix}"]
-
-    opts << "--enable-parallel" if build.with? "parallel"
-    opts << "--enable-roostats" if build.with? "roostats"
 
     if build.without? "cuba"
         opts << "--with-cuba=no"
