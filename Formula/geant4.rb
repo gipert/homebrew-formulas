@@ -83,7 +83,7 @@ class Geant4 < Formula
 
   def install
     mkdir "geant-build" do
-      args = %w[
+      args = std_cmake_args + %w[
         -DGEANT4_USE_SYSTEM_CLHEP=ON
         -DGEANT4_INSTALL_EXAMPLES=ON
         -DGEANT4_INSTALL_DATA=OFF
