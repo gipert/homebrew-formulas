@@ -7,8 +7,12 @@ class Bat < Formula
   depends_on "root"
   depends_on "cuba" => :recommended
 
+  option "multithreading", "Enable OpenMP multithreading support (gcc only)" if OS.linux?
+
   def install
-    opts = ["--prefix=#{prefix}"]
+    opts = [
+      "--prefix=#{prefix}"
+    ]
 
     if build.without? "cuba"
         opts << "--with-cuba=no"
@@ -16,20 +20,20 @@ class Bat < Formula
         opts << "--with-cuba"
     end
 
+    if build.with?("multithreading") && OS.mac?
+      odie "Multithreading support is not available on OSX for this formula"
+    end
+
+    opts << "--enable-parallel" if build.with? "multithreading"
+
     system "./configure", *opts
     system "make", "install"
+    (share/"BAT/examples").install Dir["examples/basic"]
+    (share/"BAT/examples").install Dir["examples/advanced"]
+    (share/"BAT").install Dir["doc"]
   end
 
   test do
-    # `test do` will create, run in and delete a temporary directory.
-    #
-    # This test will fail and we won't accept that! For Homebrew/homebrew-core
-    # this will need to be a test that verifies the functionality of the
-    # software. Run the test with `brew test bat`. Options passed
-    # to `brew install` such as `--HEAD` also need to be provided to `brew test`.
-    #
-    # The installed folder is not in the path, so use the entire path to any
-    # executables being tested: `system "#{bin}/program", "do", "something"`.
-    system "false"
+      system "#{prefix}/share/BAT/examples/basic/binomial/runEfficiency"
   end
 end
