@@ -1,8 +1,8 @@
 class Bat < Formula
   desc "Bayesian analysis toolkit"
   homepage "http://mpp.mpg.de/bat"
-  url "https://github.com/bat/bat/releases/download/v1.0.0-RC1/BAT-1.0.0-RC1.tar.gz"
-  sha256 "1438b6a7e1be6093139d539ea9c14f2be36061d45412e2b28c52c04fcc33f463"
+  url "https://github.com/bat/bat/releases/download/v1.0.0-RC2/BAT-1.0.0-RC2.tar.gz"
+  sha256 "51267cb1851d56858c44568a3029047ad9a3f76fbe2d58872bc78b7610d225b6"
 
   depends_on "root"
   depends_on "cuba" => :recommended
