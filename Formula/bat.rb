@@ -28,7 +28,6 @@ class Bat < Formula
     system "make", "install"
     (share/"BAT/examples").install "examples/basic"
     (share/"BAT/examples").install "examples/advanced"
-    (share/"BAT").install "doc"
   end
 
   test do
