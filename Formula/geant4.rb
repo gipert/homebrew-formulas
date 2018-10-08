@@ -1,30 +1,28 @@
 class Geant4 < Formula
   desc "Simulation toolkit for particle transport through matter"
   homepage "http://geant4.web.cern.ch"
-  url "http://cern.ch/geant4-data/releases/geant4.10.04.p01.tar.gz"
-  version "10.4.1"
-  sha256 "a3eb13e4f1217737b842d3869dc5b1fb978f761113e74bd4eaf6017307d234dd"
+  url "http://cern.ch/geant4-data/releases/geant4.10.04.p02.tar.gz"
+  version "10.4.2"
+  sha256 "2cac09e799f2eb609a7f1e4082d3d9d3d4d9e1930a8c4f9ecdad72aad35cdf10"
 
-  option "with-gdml",          "Build with GDML support"
-  option "with-g3tog4",        "Build the G3ToG4 library"
-  option "with-multithreaded", "Build with multithreading support"
-  option "without-opengl",     "Do not build the X11 OpenGL visualization driver"
-  option "without-raytracer",  "Do not build RayTracer visualization driver with X11 support"
-  option "with-qt",            "Build Qt4/5 User Interface and Visualization drivers"
-  option "with-openmotif",     "Build Motif User Interface and Visualization drivers"
+  option "with-gdml",             "Build with GDML support"
+  option "with-g3tog4",           "Build the G3ToG4 library"
+  option "without-multithreaded", "Do not build with multithreading support"
+  option "without-opengl",        "Do not build the X11 OpenGL visualization driver"
+  option "without-raytracer",     "Do not build the RayTracer visualization driver with X11 support"
+  option "with-qt",               "Build Qt4/5 User Interface and Visualization drivers"
+  option "with-openmotif",        "Build Motif User Interface and Visualization drivers"
 
-  depends_on "cmake"     => :build
   depends_on "clhep"
-  depends_on "qt"        => :optional
-  depends_on "openmotif" => :optional
-  depends_on "freetype"  => :optional
+  depends_on "cmake"                               => :build
   depends_on "xerces-c" if build.with? "gdml"
-  depends_on :x11       if build.with? "opengl"    => :recommended
   depends_on :x11       if build.with? "raytracer" => :recommended
+  depends_on :x11       if build.with? "opengl"    => :recommended
+  depends_on "freetype"                            => :optional
+  depends_on "openmotif"                           => :optional
+  depends_on "qt"                                  => :optional
 
-  depends_on "linuxbrew/xorg/glu" unless OS.mac?
-
-  needs :cxx11
+  # depends_on "linuxbrew/xorg/glu" unless OS.mac?
 
   resource "G4NDL" do
     url "http://geant4-data.web.cern.ch/geant4-data/datasets/G4NDL.4.5.tar.gz"
@@ -122,7 +120,7 @@ class Geant4 < Formula
       pushd #{HOMEBREW_PREFIX}/bin >/dev/null; . geant4.sh; popd >/dev/null
     For csh/tcsh users:
       source #{HOMEBREW_PREFIX}/bin/geant4.csh
-    EOS
+  EOS
   end
 
   test do
