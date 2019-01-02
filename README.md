@@ -1,3 +1,3 @@
-# homebrew-physics
+# homebrew-formulas
 
-[Homebrew](https://brew.sh) tap with some formulas I use. Work in progress...
+[Homebrew](https://brew.sh) tap with some formulas I use.
